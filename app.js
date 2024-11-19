@@ -32,6 +32,16 @@ app.post("/blog",upload.single('image'),async (req,res)=>{
         })
 })
 
+app.get("/blog", async(req,res)=>{
+    const blogs = await Blog.find()
+    res.status(200).json({
+        message:"Blogs fetched successfully",
+        data : blogs
+    })
+})
+
+app.use(express.static('./storage'))
+
 app.listen(process.env.PORT, ()=>{
     console.log('Server is running')
 })
