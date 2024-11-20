@@ -76,13 +76,28 @@ app.delete("/blog/:id",async (req,res)=>{
     message:"Blog deleted successfully"
   })
 
-app.patch('/blog/:id',async(req,res)=>{
+app.patch('/blog/:id',upload.single('image'), async(req,res)=>{
     const id = req.params.id
-    const {title,subtitle,description}= req.body
+    const {title,subtitle,description}= req.body 
+    let imageName;
+    if(req.file){
+        imageName = req.file.filename
+        const blog = await Blog.findById(id)
+        const oldiImageName = blog.image
+
+        fs.unlink(`storage/${imageName}`,(err)=>{
+            if(err){
+                console.log(err)
+            } else {
+                console.log("image deleted")
+            }
+        })
+    }
     await Blog.findByIdAndUpdate(id,{
         title:title,
         subtitle:subtitle,
-        description:description
+        description:description,
+        image:imageName
     })
     res.status(200).json({
         message:"Blog updated successfully"
