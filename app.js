@@ -252,7 +252,7 @@ app.patch('/blog/:id', upload.single('image'), async (req, res) => {
         }
 
         if (req.file) {
-            imageName = "http://localhost:3000/" + req.file.path;
+            imageName = "https://blog-backend-hqda.onrender.com/" + req.file.path;
             fs.unlink(blog.image, (err) => {
                 if (err) console.error("Old image deletion error:", err);
             });
