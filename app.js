@@ -166,7 +166,7 @@ app.post("/blog", upload.single('image'), async (req, res) => {
     const { title, description, subtitle } = req.body;
     let filename;
     if(req.file){
-        filename = "http://localhost:3000/" + req.file.filename
+        filename = "https://blog-backend-hqda.onrender.com" + req.file.filename
     }else{
         filename = "https://preview.redd.it/i-got-bored-so-i-decided-to-draw-a-random-image-on-the-v0-4ig97vv85vjb1.png?width=640&crop=smart&auto=webp&s=22ed6cc79cba3013b84967f32726d087e539b699"
     }
