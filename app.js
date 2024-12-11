@@ -131,7 +131,7 @@ const upload = multer({ storage });
 const path = require('path')
 
 app.use(express.json());
-app.use(cors({ origin: "http://localhost:5173" }));
+app.use(cors({ origin: ["http://localhost:5173" , "https://blog-frontend-alpha-brown.vercel.app"] }));
 app.use('/storage', express.static('storage')); // Serve static files
 connectToDatabase();
 
